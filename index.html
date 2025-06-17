@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR INSTITUTE - Computer Training Center</title>
+    <meta name="description" content="AR INSTITUTE offers professional training in ADCA, DCA, CCC, Tally, Web Development, and 3D Animation with Blender. Affiliated to E-max India.">
+    <meta name="keywords" content="computer courses, ADCA, DCA, CCC, Tally, Web Development, 3D Animation, computer training, E-max India">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #ff6b00;
+            --accent: #00c853;
+            --dark: #1a2b50;
+            --light: #f8f9fa;
+            --text: #333333;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .affiliation-tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover:after,
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 5px;
+            transition: var(--transition);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(26, 43, 80, 0.9) 100%), url(images/ss.jpg) center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .typewriter {
+            display: inline-block;
+            position: relative;
+            color: var(--secondary);
+        }
+        
+        .typewriter:after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 0.7s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Stats */
+        .stats {
+            background: var(--light);
+            padding: 60px 0;
+            transform: translateY(-50px);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item .label {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        /* Courses */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .course-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-img {
+            height: 200px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--light) 0%, #e6f0ff 100%);
+            position: relative;
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 20px;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(0, 102, 204, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+       
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 70px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-col ul li a {
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .contact-info li {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .affiliation-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .affiliation-badge i {
+            margin-right: 8px;
+        }
+        
+        /* WhatsApp CTA */
+        .whatsapp-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-cta:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hamburger Menu */
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Course Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        /* Student Showcase */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .student-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .student-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .student-img {
+            height: 250px;
+            background: var(--primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+        
+        .student-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .student-info h3 {
+            margin-bottom: 5px;
+        }
+        
+        .student-course {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        /* Downloads */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-container input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 102, 204, 0.2);
+            outline: none;
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .download-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 102, 204, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .download-info {
+            flex: 1;
+        }
+        
+        .download-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .download-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>AR <span>INSTITUTE</span></h1>
+                <div class="affiliation-tag">Affiliated to E-max India</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#students">Students</a></li>
+                    <li><a href="#downloads">Downloads</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Unlock Your Future with <span class="typewriter">AR INSTITUTE</span></h1>
+                <p>Learn ADCA, Web Development, 3D Animation, and More with Expert Guidance. Start your journey to a successful career in technology today.</p>
+                <a href="#courses" class="btn">Explore Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-container">
+            <div class="stat-item animate-on-scroll">
+                <div class="number" data-count="500">0</div>
+                <div class="label">Students Trained</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="number" data-count="12">0</div>
+                <div class="label">Professional Courses</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="number" data-count="98">0</div>
+                <div class="label">% Success Rate</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="number" data-count="10">0</div>
+                <div class="label">Expert Trainers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+                <p>Learn more about our institute and our mission</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="text-center" style="max-width: 800px; margin: 0 auto 40px;">
+                    <p>AR INSTITUTE is a premier computer training center dedicated to providing quality education and skill development in various IT domains. We are proud to be affiliated with E-max India, a leading name in computer education.</p>
+                    <p>Our mission is to empower individuals with practical skills and knowledge that make them industry-ready and competitive in the job market.</p>
+                    <div class="affiliation-badge">
+                        <i class="fas fa-certificate"></i> Affiliated to E-max India
+                    </div>
+                </div>
+                
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px;">
+                    <div class="feature-card animate-on-scroll" style="background: white; padding: 25px; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: var(--transition);">
+                        <div style="width: 70px; height: 70px; background: rgba(0, 102, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary); font-size: 1.8rem;">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Expert Trainers</h3>
+                        <p>Learn from industry professionals with years of practical experience.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-on-scroll" style="background: white; padding: 25px; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: var(--transition);">
+                        <div style="width: 70px; height: 70px; background: rgba(0, 102, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary); font-size: 1.8rem;">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Hands-on Learning</h3>
+                        <p>Practical sessions and real-world projects for skill development.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-on-scroll" style="background: white; padding: 25px; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: var(--transition);">
+                        <div style="width: 70px; height: 70px; background: rgba(0, 102, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary); font-size: 1.8rem;">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3>Affordable Fees</h3>
+                        <p>Quality education at reasonable prices with flexible payment options.</p>
+                    </div>
+                    
+                    <div class="feature-card animate-on-scroll" style="background: white; padding: 25px; border-radius: 15px; box-shadow: var(--shadow); text-align: center; transition: var(--transition);">
+                        <div style="width: 70px; height: 70px; background: rgba(0, 102, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--primary); font-size: 1.8rem;">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Placement Support</h3>
+                        <p>Career guidance and placement assistance for all successful students.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section" id="courses" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Courses</h2>
+                <p>Choose from our wide range of professional courses</p>
+            </div>
+            
+            <div class="courses-grid">
+                <!-- ADCA -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>ADCA</h3>
+                        <p>Advanced Diploma in Computer Applications covering MS Office, programming basics, and more.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 12 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="ADCA">Enroll Now</button>
+                    </div>
+                </div>
+                
+                <!-- DCA -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>DCA</h3>
+                        <p>Diploma in Computer Applications focusing on computer fundamentals and applications.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="DCA">Enroll Now</button>
+                    </div>
+                </div>
+                
+                <!-- CCC -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>CCC</h3>
+                        <p>Course on Computer Concepts providing basic IT skills and computer literacy.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 3 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="CCC">Enroll Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tally -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Tally Prime</h3>
+                        <p>Comprehensive training in accounting and financial management using Tally software.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 4 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="Tally">Enroll Now</button>
+                    </div>
+                </div>
+                
+                <!-- Web Development -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Web Development</h3>
+                        <p>Full-stack web development training covering HTML, CSS, JavaScript, and backend technologies.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="Web Development">Enroll Now</button>
+                    </div>
+                </div>
+                
+                <!-- 3D Animation -->
+                <div class="course-card animate-on-scroll">
+                    <div class="course-img">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>3D Animation</h3>
+                        <p>Professional training in 3D modeling, rigging, and animation using Blender software.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Months</span>
+                            <span><i class="fas fa-rupee-sign"></i> Affordable</span>
+                        </div>
+                        <button class="btn enroll-btn" data-course="3D Animation">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Testimonials</h2>
+                <p>What our students say about us</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                    <p>Excellent Computer Institute because...
+Here you not only have your theory but you also explain some important things like your AI..New technology etc.
+</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img class="author-img" src="images/HIMANSHU .jpg" alt="">
+                        <div class="author-info">
+                            <h4>Himanshu Gour</h4>
+                            <p>ADCA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                    <p>AR Institute of Computer Technology is an excellent educational center where every student should consider enrolling to gain quality knowledge and practical skills in computer education</p>
+                    </div>
+                    <div class="testimonial-author">
+                     <img class="author-img" src="images/Tufail Ahmed.jpg" alt="">
+                        <div class="author-info">
+                            <h4>Tufail Ahmed</h4>
+                            <p>ADCA Student</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                    <p>Students receive a much better education and gain deeper knowledge through smart classes."
+
+Or, for a more professional and polished tone:
+
+"Smart classes offer a significantly enhanced learning experience, providing students with better education and deeper understanding.</p>
+                    </div>
+                    <div class="testimonial-author">
+                    <img class="author-img" src="images/Anoop Prajapati.jpg" alt="">
+                        <div class="author-info">
+                            <h4>Anoop Prajapati</h4>
+                            <p>MCIT Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Students Section -->
+    <section class="section" id="students">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Students</h2>
+                <p>Meet some of our toper students</p>
+            </div>
+            
+            <div class="students-grid">
+                <div class="student-card animate-on-scroll">
+                   <img class="student-img" src="images/HIMANSHU .jpg" alt="">
+                    <div class="student-info">
+                        <h3>Mohd Asif</h3>
+                        <p class="student-course">Web Development</p>
+                        <p>Winner of Web Development Competition</p>
+                    </div>
+                </div>
+                
+                <div class="student-card animate-on-scroll">
+                    <img class="student-img" src="images/HIMANSHU .jpg" alt="">
+                    <div class="student-info">
+                        <h3>Himanshu Gour</h3>
+                        <p class="student-course">ADCA</p>
+                        <p>1st Rank in typing competition</p>
+                    </div>
+                </div>
+                
+                <div class="student-card animate-on-scroll">
+                  <img class="student-img" src="images/Tufail Ahmed.jpg" alt="">
+                    <div class="student-info">
+                        <h3>Nandani Madhesiya</h3>
+                        <p class="student-course">Web Dev & 3d Animation</p>
+                        <p>Winner of A.I. Debate </p>
+                    </div>
+                </div>
+                
+                <div class="student-card animate-on-scroll">
+                    <img class="student-img" src="images/Tufail Ahmed.jpg" alt="">
+                    <div class="student-info">
+                        <h3>Monika Yadav</h3>
+                        <p class="student-course">ADCA</p>
+                        <p>Toper of the Center</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section class="section" id="downloads" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Study Materials</h2>
+                <p>Download course materials and resources</p>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="pdf-search" placeholder="Search for study materials...">
+            </div>
+            
+            <div class="downloads-grid">
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>Fundamental of Computer</h3>
+                        <p>Fundamental of Computer for Advanced Diploma in Computer Applications</p>
+                        <a href="Pdfs/Computer-Fundamental.pdf" class="download-btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>Oeprating System Pdf Notes</h3>
+                        <p>Comprehensive notes of Operating System </p>
+                        <a href="Pdfs/Os.pdf" class="download-btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>HTML</h3>
+                        <p>Introduction to HTML ( Hyper Text Markup Language)</p>
+                        <a href="Pdfs/HTML_Complete_Notes.pdf" class="download-btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>Blender 3D Handbook</h3>
+                        <p>Getting started with 3D modeling in Blender</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>CCC Exam Guide</h3>
+                        <p>Preparation material for Course on Computer Concepts</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-card animate-on-scroll">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>DCA Study Notes</h3>
+                        <p>Complete study material for Diploma in Computer Applications</p>
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for more information</p>
+            </div>
+            
+            <div class="contact-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 6306985755</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>contact.arinstitute@gmail.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-youtube"></i>
+                            <div>
+                                <strong>YouTube</strong>
+                                <p>AR INSTITUTE Channel</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Address</strong>
+                                <p>123 Education Street, Learning City, 500001</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-links" style="margin-top: 30px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate-on-scroll">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm" style="margin-top: 20px;">
+                        <div style="margin-bottom: 20px;">
+                            <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <input type="tel" placeholder="Your Phone" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Take the first step towards a successful career in technology. Join AR INSTITUTE today and unlock your potential.</p>
+            <a href="https://wa.me/+916306985755" class="btn" target="_blank">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>AR INSTITUTE</h3>
+                    <p>Providing quality computer education since 2010. Empowering students with industry-relevant skills for successful careers.</p>
+                    <div class="affiliation-badge">
+                        <i class="fas fa-certificate"></i> Affiliated to E-max India
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#students">Students</a></li>
+                        <li><a href="#downloads">Downloads</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Popular Courses</h3>
+                    <ul>
+                        <li><a href="#courses">ADCA</a></li>
+                        <li><a href="#courses">DCA</a></li>
+                        <li><a href="#courses">CCC</a></li>
+                        <li><a href="#courses">Tally Prime</a></li>
+                        <li><a href="#courses">Web Development</a></li>
+                        <li><a href="#courses">3D Animation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Education Street, Learning City, 500001</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 6306985755</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>contact.arinstitute@gmail.com</span>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 AR INSTITUTE. All Rights Reserved. | Affiliated to E-max India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp CTA -->
+    <a href="https://wa.me/+916306985755" class="whatsapp-cta" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Course Modal -->
+    <div class="modal" id="courseModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-course-title">Course Title</h2>
+            <div class="course-meta" style="margin: 20px 0;">
+                <span><i class="far fa-clock"></i> <span id="modal-course-duration">Duration</span></span>
+                <span><i class="fas fa-rupee-sign"></i> Affordable Fees</span>
+            </div>
+            <p id="modal-course-description">Course description will appear here.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://wa.me/+916306985755" class="btn" target="_blank" style="margin-right: 15px;">Enroll via WhatsApp</a>
+                <button class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 100);
+            
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.classList.toggle('show', window.scrollY > 500);
+        });
+
+        // Back to top functionality
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animated Counter
+        const counters = document.querySelectorAll('.number');
+        const speed = 200;
+
+        const startCounter = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        // Scroll Animation
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const elementInView = (el, scrollOffset = 0) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= 
+                ((window.innerHeight || document.documentElement.clientHeight) - scrollOffset)
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('animated');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 100)) {
+                    displayScrollElement(el);
+                }
+            });
+            
+            // Start counter when stats section is in view
+            if (elementInView(document.querySelector('.stats'), 100)) {
+                startCounter();
+                window.removeEventListener('scroll', handleScrollAnimation);
+            }
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize on page load
+        handleScrollAnimation();
+
+        // Course Modal
+        const modal = document.getElementById('courseModal');
+        const enrollButtons = document.querySelectorAll('.enroll-btn');
+        const closeModal = document.querySelectorAll('.close-modal');
+        
+        enrollButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const course = button.getAttribute('data-course');
+                document.getElementById('modal-course-title').textContent = course;
+                
+                // Set course-specific details
+                switch(course) {
+                    case 'ADCA':
+                        document.getElementById('modal-course-duration').textContent = '12 Months';
+                        document.getElementById('modal-course-description').textContent = 'Advanced Diploma in Computer Applications covering MS Office, programming basics, internet technologies, and practical applications. Ideal for students seeking comprehensive computer knowledge.';
+                        break;
+                    case 'DCA':
+                        document.getElementById('modal-course-duration').textContent = '6 Months';
+                        document.getElementById('modal-course-description').textContent = 'Diploma in Computer Applications focusing on computer fundamentals, operating systems, office applications, and basic programming. Perfect for beginners.';
+                        break;
+                    case 'CCC':
+                        document.getElementById('modal-course-duration').textContent = '3 Months';
+                        document.getElementById('modal-course-description').textContent = 'Course on Computer Concepts providing basic IT skills, computer literacy, internet fundamentals, and productivity tools. Essential for digital literacy.';
+                        break;
+                    case 'Tally':
+                        document.getElementById('modal-course-duration').textContent = '4 Months';
+                        document.getElementById('modal-course-description').textContent = 'Comprehensive training in accounting and financial management using Tally software. Covers GST, inventory management, and financial reporting.';
+                        break;
+                    case 'Web Development':
+                        document.getElementById('modal-course-duration').textContent = '6 Months';
+                        document.getElementById('modal-course-description').textContent = 'Full-stack web development training covering HTML, CSS, JavaScript, React, Node.js, and database management. Build real-world projects.';
+                        break;
+                    case '3D Animation':
+                        document.getElementById('modal-course-duration').textContent = '6 Months';
+                        document.getElementById('modal-course-description').textContent = 'Professional training in 3D modeling, rigging, animation, and rendering using Blender software. Learn industry-standard techniques.';
+                        break;
+                }
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        closeModal.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // PDF Search Functionality
+        const pdfSearch = document.getElementById('pdf-search');
+        const downloadCards = document.querySelectorAll('.download-card');
+        
+        pdfSearch.addEventListener('input', () => {
+            const searchTerm = pdfSearch.value.toLowerCase();
+            
+            downloadCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize GSAP animations
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate hero text
+            gsap.from('.hero-content', {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+            
+            // Animate section titles
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 80%'
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8
+                });
+            });
+            
+            // Parallax effect for hero section
+            gsap.to('.hero', {
+                scrollTrigger: {
+                    scrub: true
+                },
+                backgroundPosition: '50% 20%',
+                ease: 'none'
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will contact you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
