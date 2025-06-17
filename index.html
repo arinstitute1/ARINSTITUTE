@@ -210,7 +210,7 @@
         .hero {
             height: 100vh;
             min-height: 700px;
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(26, 43, 80, 0.9) 100%), url(images/ss.jpg) center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(26, 43, 80, 0.9) 100%), url(ss.jpg) center/cover no-repeat;
             display: flex;
             align-items: center;
             color: var(--white);
@@ -862,6 +862,7 @@
                     <li><a href="#" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#courses">Courses</a></li>
+                    <li><a href="https://emaxindia.in/exampanel/student/index.php">Student Login</a></li>
                     <li><a href="#students">Students</a></li>
                     <li><a href="#downloads">Downloads</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -1086,7 +1087,7 @@ Here you not only have your theory but you also explain some important things li
 </p>
                     </div>
                     <div class="testimonial-author">
-                        <img class="author-img" src="images/HIMANSHU .jpg" alt="">
+                        <img class="author-img" src="HIMANSHU .jpg" alt="">
                         <div class="author-info">
                             <h4>Himanshu Gour</h4>
                             <p>ADCA</p>
@@ -1099,7 +1100,7 @@ Here you not only have your theory but you also explain some important things li
                     <p>AR Institute of Computer Technology is an excellent educational center where every student should consider enrolling to gain quality knowledge and practical skills in computer education</p>
                     </div>
                     <div class="testimonial-author">
-                     <img class="author-img" src="images/Tufail Ahmed.jpg" alt="">
+                     <img class="author-img" src="Tufail Ahmed.jpg" alt="">
                         <div class="author-info">
                             <h4>Tufail Ahmed</h4>
                             <p>ADCA Student</p>
@@ -1116,7 +1117,7 @@ Or, for a more professional and polished tone:
 "Smart classes offer a significantly enhanced learning experience, providing students with better education and deeper understanding.</p>
                     </div>
                     <div class="testimonial-author">
-                    <img class="author-img" src="images/Anoop Prajapati.jpg" alt="">
+                    <img class="author-img" src="Anoop Prajapati.jpg" alt="">
                         <div class="author-info">
                             <h4>Anoop Prajapati</h4>
                             <p>MCIT Student</p>
@@ -1308,24 +1309,64 @@ Or, for a more professional and polished tone:
                     </div>
                 </div>
                 
-                <div class="contact-form animate-on-scroll">
-                    <h3>Send us a Message</h3>
-                    <form id="contactForm" style="margin-top: 20px;">
-                        <div style="margin-bottom: 20px;">
-                            <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <input type="tel" placeholder="Your Phone" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
+ 
+
+<div class="contact-form animate-on-scroll">
+  <h3>Send us a Message</h3>
+
+  <form id="contactForm" style="margin-top: 20px;">
+
+    <input type="hidden" name="access_key" value="e103f1a1-b70a-4985-b485-ef4d0365c440" />
+
+    <div style="margin-bottom: 20px;">
+      <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <input type="tel" name="phone" placeholder="Your Phone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+    </div>
+
+  
+    <div style="margin-bottom: 20px;">
+      <textarea name="message" placeholder="Your Message" rows="5" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+    </div>
+
+    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        alert("✅ Message sent successfully!");
+        form.reset();
+      } else {
+        alert("❌ Failed to send message. Please try again.");
+      }
+    })
+    .catch(error => {
+      alert("⚠️ Error: " + error.message);
+    });
+  });
+</script>
+
+</div>
+
             </div>
         </div>
     </section>
@@ -1432,6 +1473,8 @@ Or, for a more professional and polished tone:
                 <button class="btn btn-outline close-modal">Close</button>
             </div>
         </div>
+
+        
     </div>
 
     <script>
@@ -1645,13 +1688,7 @@ Or, for a more professional and polished tone:
             });
         });
 
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            contactForm.reset();
-        });
+   
     </script>
 </body>
 </html>
